@@ -5,11 +5,19 @@
 https://redmine.hexpro.xyz
 
 ### Requirements:
-1. Docker installed
+1. Docker installed on target host
 
-### Settings
+### Setup
 1. You can edit target hosts in **inventory.ini** file
 1. You can edit ports and deploy settings in **playbook.yml**
+1. To edit secrets run commands:
+```
+touch vault-password
+### type password to vault-password
+make decrypt-vault
+### edit group_vars/webservers/vault.yml
+make encrypt-vault
+```
 
 ### Deploy:
 1. Install Ansible

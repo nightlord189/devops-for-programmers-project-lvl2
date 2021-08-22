@@ -1,4 +1,0 @@
-DB_NAME: defaultdb
-DB_HOST: private-hexlet-postgres-01-do-user-6439600-0.b.db.ondigitalocean.com
-DB_PORT: '25060'
-DB_USERNAME: doadmin

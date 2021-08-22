@@ -1,0 +1,14 @@
+DB_NAME: defaultdb
+DB_HOST: private-hexlet-postgres-01-do-user-6439600-0.b.db.ondigitalocean.com
+DB_PORT: '25060'
+DB_USERNAME: doadmin
+
+datadog_site: "datadoghq.com"
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: devops-for-programmers-project-lvl2 healthz
+        url: http://localhost:3000
+        timeout: 5
+        method: GET

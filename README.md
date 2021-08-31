@@ -10,8 +10,7 @@ https://redmine.hexpro.xyz
 
 ### Setup
 1. Edit target hosts in **inventory.ini** file
-1. Edit list of required packages at **install-playbook.yml**
-1. Edit ports and deploy settings at **deploy-playbook.yml**
+1. Edit ansible playbook at **playbook.yml**
 1. Edit db and monitoring settings at **group_vars/all**
 1. To edit secrets run commands:
 ```

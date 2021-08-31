@@ -1,8 +1,8 @@
 install-software:
-	ansible-playbook -i inventory.ini --vault-password-file vault-password install-playbook.yml
+	ansible-playbook -i inventory.ini --vault-password-file vault-password -t install playbook.yml
 
 deploy:
-	ansible-playbook -i inventory.ini --vault-password-file vault-password deploy-playbook.yml
+	ansible-playbook -i inventory.ini --vault-password-file vault-password -t deploy playbook.yml
 
 ansible-install:
 	ansible-galaxy collection install -r requirements.yml

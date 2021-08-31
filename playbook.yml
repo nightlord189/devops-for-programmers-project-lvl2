@@ -2,7 +2,23 @@
   remote_user: "{{ remote_user }}"
 
   tasks:
-  - name: Run docker-app
+  - name: Update software cache
+    become: true
+    apt:
+      update_cache: yes
+      cache_valid_time: 86400
+    tags: install
+
+  - name: Install software
+    ansible.builtin.apt: 
+      pkg:
+        - python3-pip
+        - python3-docker
+      state: present
+    become: true
+    tags: install
+
+  - name: Run application
     community.docker.docker_container:
       name: redmine
       image: redmine
@@ -16,9 +32,14 @@
         REDMINE_DB_PORT: "{{ db_port }}"
         REDMINE_DB_USERNAME: "{{ db_username }}"
         REDMINE_DB_PASSWORD: "{{ db_password }}"
+    tags: deploy
 
 
 - hosts: webservers
-  gather_facts: yes
-  roles:
-    - { role: datadog.datadog, become: yes }
+  remote_user: "{{ remote_user }}"
+
+  tasks:
+  - name: Run monitoring
+    ansible.builtin.include_role:
+      name: datadog.datadog
+    tags: deploy

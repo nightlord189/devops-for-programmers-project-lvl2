@@ -1,0 +1,24 @@
+- hosts: all
+  remote_user: "{{ remote_user }}"
+
+  tasks:
+  - name: Run docker-app
+    community.docker.docker_container:
+      name: redmine
+      image: redmine
+      published_ports: 3000:3000
+      restart_policy: always
+      restart: yes
+      container_default_behavior: no_defaults
+      env:
+        REDMINE_DB_DATABASE: "{{ db_name }}"
+        REDMINE_DB_POSTGRES: "{{ db_host }}"
+        REDMINE_DB_PORT: "{{ db_port }}"
+        REDMINE_DB_USERNAME: "{{ db_username }}"
+        REDMINE_DB_PASSWORD: "{{ db_password }}"
+
+
+- hosts: webservers
+  gather_facts: yes
+  roles:
+    - { role: datadog.datadog, become: yes }

@@ -31,9 +31,13 @@ make install
 ```
 make install-software
 ```
-3. Deploy app to your target hosts:
+4. Setup monitoring (Datadog):
 ```
-make deploy
+make setup-monitoring
 ```
-4. Open app:   
+5. Deploy app to your target hosts:
+```
+make deploy-app
+```
+6. Open app:   
 [http://<your_host>:3000](http://<your_host>:3000)
